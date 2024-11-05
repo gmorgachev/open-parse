@@ -231,6 +231,9 @@ def table_from_model_outputs(
     header_objs = _preprocess_header_cells(headers, cols, image.size, page_size)
     row_objs = _process_row_cells(rows, cols, header_objs, image.size, page_size)
 
+    header_objs = [header for header in header_objs if len(header.cells) > 0]
+    row_objs = [row for row in row_objs if len(row.cells) > 0]
+
     return _Table(bbox=table_bbox, headers=header_objs, rows=row_objs)
 
 
